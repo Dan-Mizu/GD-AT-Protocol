@@ -1,0 +1,32 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="GD AT Protocol"
+run/main_scene="uid://dburqv0p518ie"
+config/features=PackedStringArray("4.5")
+config/icon="res://icon.svg"
+
+[autoload]
+
+ATProto="*res://addons/gd_at_protocol/atproto.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gd_at_protocol/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "purple",
+"res://components/": "blue",
+"res://scenes/": "yellow"
+}

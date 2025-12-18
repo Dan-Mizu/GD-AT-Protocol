@@ -1,0 +1,20 @@
+@tool
+extends EditorPlugin
+
+const ATPROTO_AUTOLOAD_NAME = "ATProto"
+
+func _enable_plugin() -> void:
+	# Add autoloads here.
+	add_autoload_singleton(ATPROTO_AUTOLOAD_NAME, "res://addons/gd_at_protocol/atproto.gd")
+
+func _disable_plugin() -> void:
+	# Remove autoloads here.
+	remove_autoload_singleton(ATPROTO_AUTOLOAD_NAME)
+
+#func _enter_tree() -> void:
+	## Initialization of the plugin goes here.
+	#pass
+
+#func _exit_tree() -> void:
+	## Clean-up of the plugin goes here.
+	#pass
