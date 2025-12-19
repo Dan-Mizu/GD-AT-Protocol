@@ -42,6 +42,15 @@ func _get_profile() -> void:
 		# failed
 		if not res.is_ok():
 			push_error("Failed to get profile: %s" % res.error)
+			ToastParty.show({
+				"text": res.error,           # Text (emojis can be used)
+				"bgcolor": Color(1.0, 0.223, 0.223, 0.8),     # Background Color
+				"color": Color(1, 1, 1, 1),         # Text Color
+				"gravity": "top",                   # top or bottom
+				"direction": "center",               # left or center or right
+				"text_size": 14,                    # [optional] Text (font) size // experimental (warning!)
+				"use_font": true                    # [optional] Use custom ToastParty font // experimental (warning!)
+			})
 			handle_line_edit.clear()
 			spinner_container.visible = false
 			profile_card_panel_container.visible = false
