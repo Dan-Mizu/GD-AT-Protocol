@@ -3,8 +3,11 @@ extends Control
 # inputs
 @export var handle_line_edit: LineEdit
 
-# profile
+# views
 @export var profile_card_panel_container: PanelContainer
+@export var spinner_container: MarginContainer
+
+# profile
 @export var profile_avatar_texture_rect: TextureRect
 @export var profile_banner_texture_rect: TextureRect
 @export var profile_name_label: Label
@@ -12,7 +15,10 @@ extends Control
 @export var profile_follower_count_label: Label
 @export var profile_following_count_label: Label
 
-func _ready() -> void: profile_card_panel_container.visible = false
+
+func _ready() -> void: 
+	spinner_container.visible = false
+	profile_card_panel_container.visible = false
 
 func _on_send_button_pressed() -> void: _get_profile()
 
@@ -21,6 +27,7 @@ func _on_handle_line_edit_text_submitted(_new_text: String) -> void: _get_profil
 func _get_profile() -> void:
 	if not handle_line_edit.text.is_empty():
 		profile_card_panel_container.visible = false
+		spinner_container.visible = true
 
 		# get profile data
 		var res: Dictionary = await ATProto.get_profile(handle_line_edit.text)
@@ -38,8 +45,8 @@ func _get_profile() -> void:
 
 		profile_name_label.text = profile_data.get("displayName", "")
 		profile_description_label.text = profile_data.get("description", "")
-		profile_follower_count_label.text = str(profile_data.get("followersCount", ""))
-		profile_following_count_label.text = str(profile_data.get("followsCount", ""))
+		profile_follower_count_label.text = format_number_as_string(int(profile_data.get("followersCount", "")))
+		profile_following_count_label.text = format_number_as_string(int(profile_data.get("followsCount", "")))
 
 		var avatar_url: String = profile_data.get("avatar", "")
 		if avatar_url.is_empty(): profile_avatar_texture_rect.texture = null
@@ -49,6 +56,7 @@ func _get_profile() -> void:
 		if banner_url.is_empty(): profile_banner_texture_rect.texture = null
 		else: await _set_texture_from_url(profile_banner_texture_rect, banner_url)
 
+		spinner_container.visible = false
 		profile_card_panel_container.visible = true
 
 func _set_texture_from_url(target: TextureRect, url: String) -> void:
@@ -84,3 +92,19 @@ func _set_texture_from_url(target: TextureRect, url: String) -> void:
 
 	var texture := ImageTexture.create_from_image(image)
 	target.texture = texture
+
+func format_number_as_string(number: int) -> String:
+	var num_str: String = str(abs(number))
+	var result: String = ""
+	var count: int = 0
+
+	for i in range(num_str.length() - 1, -1, -1):
+		result = num_str[i] + result
+		count += 1
+		if count % 3 == 0 and i != 0:
+			result = "," + result
+
+	if number < 0:
+		result = "-" + result
+
+	return result

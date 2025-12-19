@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dburqv0p518ie"]
+[gd_scene load_steps=26 format=3 uid="uid://dburqv0p518ie"]
 
 [ext_resource type="PackedScene" uid="uid://doxsqt5ydwfwm" path="res://components/cloud_background.tscn" id="1_0lt4e"]
 [ext_resource type="Theme" uid="uid://dr4hm86sugbmt" path="res://components/ui/Glassmorphism/Themes/glassmorphism.tres" id="1_861bk"]
@@ -49,16 +49,12 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpuud"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.27730417, 0.27730417, 0.27730417, 0.333)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
+bg_color = Color(0.08235294, 0.11372549, 0.15686275, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.08235294, 0.11372549, 0.15686275, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -74,6 +70,33 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc1k0"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.08235294, 0.11372549, 0.15686275, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+anti_aliasing_size = 1.2
+
+[sub_resource type="SystemFont" id="SystemFont_mpuud"]
+font_names = PackedStringArray("Segoe UI")
+
+[sub_resource type="FontVariation" id="FontVariation_p2530"]
+base_font = SubResource("SystemFont_mpuud")
+variation_opentype = {
+2003265652: 999
+}
+variation_embolden = 1.0
+
 [sub_resource type="SystemFont" id="SystemFont_dpt2u"]
 font_names = PackedStringArray("Segoe UI")
 
@@ -85,7 +108,94 @@ variation_opentype = {
 variation_embolden = 0.8
 spacing_bottom = 2
 
-[node name="FindProfile" type="Control" node_paths=PackedStringArray("handle_line_edit", "profile_card_panel_container", "profile_avatar_texture_rect", "profile_banner_texture_rect", "profile_name_label", "profile_description_label", "profile_follower_count_label", "profile_following_count_label")]
+[sub_resource type="Gradient" id="Gradient_dpt2u"]
+offsets = PackedFloat32Array(0.9, 0.901, 0.999, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mpuud"]
+gradient = SubResource("Gradient_dpt2u")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Animation" id="Animation_p2530"]
+resource_name = "spin"
+length = 2.0
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:radial_initial_angle")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.0001, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 360.0, 0.0, 360.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [30.0, 50.0, 100.0, 30.0]
+}
+
+[sub_resource type="Animation" id="Animation_yc1k0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:radial_initial_angle")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:radial_fill_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [60.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:value")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [72.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fxi54"]
+_data = {
+&"RESET": SubResource("Animation_yc1k0"),
+&"spin": SubResource("Animation_p2530")
+}
+
+[node name="FindProfile" type="Control" node_paths=PackedStringArray("handle_line_edit", "profile_card_panel_container", "spinner_container", "profile_avatar_texture_rect", "profile_banner_texture_rect", "profile_name_label", "profile_description_label", "profile_follower_count_label", "profile_following_count_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,6 +206,7 @@ theme = ExtResource("1_861bk")
 script = ExtResource("2_dpt2u")
 handle_line_edit = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer/Handle Input")
 profile_card_panel_container = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card")
+spinner_container = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Spinner")
 profile_avatar_texture_rect = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Profile Image Cutout/Profile Avatar Image")
 profile_banner_texture_rect = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Banner Cutout/Profile Banner Image")
 profile_name_label = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Profile Name")
@@ -138,7 +249,8 @@ theme_override_constants/separation = 20
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "AT Proto Demo"
+text = "AT Protocol
+Profile Demo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -207,33 +319,33 @@ target_control = NodePath("../..")
 metadata/_custom_type_script = "uid://d1qmtwovrflgb"
 
 [node name="Profile Card" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mpuud")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card"]
 layout_mode = 2
-theme_override_constants/separation = -26
+theme_override_constants/separation = -35
 
 [node name="Banner Cutout" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer"]
 clip_children = 1
-custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p2530")
 
 [node name="Profile Banner Image" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Banner Cutout"]
 layout_mode = 2
-expand_mode = 3
+expand_mode = 5
 
 [node name="Content" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer"]
 layout_mode = 2
@@ -241,7 +353,7 @@ theme_override_constants/separation = 10
 
 [node name="Profile Image Cutout" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer"]
 clip_children = 1
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -252,9 +364,15 @@ layout_mode = 2
 expand_mode = 3
 stretch_mode = 5
 
+[node name="Border" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Profile Image Cutout"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yc1k0")
+
 [node name="Profile Name" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_fonts/font = SubResource("FontVariation_p2530")
+vertical_alignment = 2
 
 [node name="Spacer" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -269,14 +387,14 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = SubResource("FontVariation_mpuud")
 theme_override_font_sizes/font_size = 14
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="Followers Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Followers"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 14
 text = "followers"
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="Following" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -287,21 +405,42 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = SubResource("FontVariation_mpuud")
 theme_override_font_sizes/font_size = 14
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="Following Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Following"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 14
 text = "following"
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="Profile Description" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer"]
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 15
-horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="Spinner" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Spinner"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+value = 72.0
+fill_mode = 5
+radial_fill_degrees = 60.0
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_mpuud")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Spinner/TextureProgressBar"]
+libraries = {
+&"": SubResource("AnimationLibrary_fxi54")
+}
+autoplay = "spin"
 
 [connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer/Handle Input" to="." method="_on_handle_line_edit_text_submitted"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer/Send/Button" to="." method="_on_send_button_pressed"]
