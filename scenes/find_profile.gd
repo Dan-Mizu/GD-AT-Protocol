@@ -1,5 +1,6 @@
 extends Control
 
+#region Linking Scene Nodes to Variables
 # inputs
 @export var handle_line_edit: LineEdit
 
@@ -14,51 +15,63 @@ extends Control
 @export var profile_description_label: Label
 @export var profile_follower_count_label: Label
 @export var profile_following_count_label: Label
+#endregion
 
-
+#region Scene Initialization
 func _ready() -> void: 
 	spinner_container.visible = false
 	profile_card_panel_container.visible = false
+#endregion
 
+#region Signals
 func _on_send_button_pressed() -> void: _get_profile()
-
 func _on_handle_line_edit_text_submitted(_new_text: String) -> void: _get_profile()
+#endregion
 
+#region Get the AT Proto Profile of a user from their Handle
 func _get_profile() -> void:
+	# user typed in a handle
 	if not handle_line_edit.text.is_empty():
+		# show loading spinner
 		profile_card_panel_container.visible = false
 		spinner_container.visible = true
 
 		# get profile data
-		var res: Dictionary = await ATProto.get_profile(handle_line_edit.text)
+		var res: ATProtoProfileData.ATProtoProfileResponse = await ATProto.get_profile(handle_line_edit.text)
 
 		# failed
-		if not res.get("ok", false):
-			push_error("Failed to get profile: %s" % res)
+		if not res.is_ok():
+			push_error("Failed to get profile: %s" % res.error)
 			handle_line_edit.clear()
+			spinner_container.visible = false
 			profile_card_panel_container.visible = false
 			return
 
 		# success
-		var profile_data: Dictionary = res["data"]
-		print("Profile data: ", profile_data)
+		var profile_data: ATProtoProfileData = res.data
+		print("Profile data: ", profile_data.raw)
 
-		profile_name_label.text = profile_data.get("displayName", "")
-		profile_description_label.text = profile_data.get("description", "")
-		profile_follower_count_label.text = format_number_as_string(int(profile_data.get("followersCount", "")))
-		profile_following_count_label.text = format_number_as_string(int(profile_data.get("followsCount", "")))
+		# set profile text
+		profile_name_label.text = profile_data.display_name
+		profile_description_label.text = profile_data.description
+		profile_follower_count_label.text = format_number_as_string(profile_data.followers_count)
+		profile_following_count_label.text = format_number_as_string(profile_data.follows_count)
 
-		var avatar_url: String = profile_data.get("avatar", "")
+		# set profile images
+		var avatar_url: String = profile_data.avatar_url
 		if avatar_url.is_empty(): profile_avatar_texture_rect.texture = null
 		else: await _set_texture_from_url(profile_avatar_texture_rect, avatar_url)
 
-		var banner_url: String = profile_data.get("banner", "")
+		var banner_url: String = profile_data.banner_url
 		if banner_url.is_empty(): profile_banner_texture_rect.texture = null
 		else: await _set_texture_from_url(profile_banner_texture_rect, banner_url)
 
+		# show profile card
 		spinner_container.visible = false
 		profile_card_panel_container.visible = true
+#endregion
 
+#region Helper Functions
 func _set_texture_from_url(target: TextureRect, url: String) -> void:
 	var http := HTTPRequest.new()
 	add_child(http)
@@ -108,3 +121,4 @@ func format_number_as_string(number: int) -> String:
 		result = "-" + result
 
 	return result
+#endregion
