@@ -6,45 +6,45 @@ func _ready() -> void:
 	_client = ATProtoClient.new()
 	add_child(_client)
 
-func get_profile(actor: String) -> ATProtoProfileData.ATProtoProfileResponse:
+func get_profile(actor: String) -> ATProtoProfileData.Response:
 	var raw: Dictionary = await _client.xrpc_get(
 		"/xrpc/app.bsky.actor.getProfile",
 		{ "actor": actor },
 		false
 	)
-	return ATProtoProfileData.ATProtoProfileResponse.from_raw(raw)
+	return ATProtoProfileData.Response.from_raw(raw)
 
-func create_session(identifier: String, app_password: String) -> ATProtoSessionData.ATProtoSessionResponse:
+func create_session(identifier: String, app_password: String) -> ATProtoSessionData.Response:
 	var payload := { "identifier": identifier, "password": app_password }
 	var raw: Dictionary = await _client.xrpc_post(
 		"/xrpc/com.atproto.server.createSession",
 		payload,
 		false
 	)
-	var resp: ATProtoSessionData.ATProtoSessionResponse = ATProtoSessionData.ATProtoSessionResponse.from_raw(raw)
+	var resp: ATProtoSessionData.Response = ATProtoSessionData.Response.from_raw(raw)
 	if resp.error == "":
 		var s: ATProtoSessionData = resp.data
 		_client.set_session(s.did, s.access_jwt, s.refresh_jwt)
 	return resp
 
-func get_record(repo: String, collection: String, rkey: String) -> ATProtoRecordData.ATProtoRecordResponse:
+func get_record(repo: String, collection: String, rkey: String) -> ATProtoRecordData.Response:
 	var raw: Dictionary = await _client.xrpc_get(
 		"/xrpc/com.atproto.repo.getRecord",
 		{ "repo": repo, "collection": collection, "rkey": rkey },
 		true
 	)
-	return ATProtoRecordData.ATProtoRecordResponse.from_raw(raw)
+	return ATProtoRecordData.Response.from_raw(raw)
 
-func put_record(repo: String, collection: String, rkey: String, record: Dictionary) -> ATProtoPutRecordData.ATProtoPutRecordResponse:
+func put_record(repo: String, collection: String, rkey: String, record: Dictionary) -> ATProtoPutRecordData.Response:
 	var payload := { "repo": repo, "collection": collection, "rkey": rkey, "record": record }
 	var raw: Dictionary = await _client.xrpc_post(
 		"/xrpc/com.atproto.repo.putRecord",
 		payload,
 		true
 	)
-	return ATProtoPutRecordData.ATProtoPutRecordResponse.from_raw(raw)
+	return ATProtoPutRecordData.Response.from_raw(raw)
 
-func get_author_feed(actor_did: String, limit: int = 20, cursor: String = "") -> ATProtoAuthorFeedData.ATProtoAuthorFeedResponse:
+func get_author_feed(actor_did: String, limit: int = 20, cursor: String = "") -> ATProtoAuthorFeedData.Response:
 	var query: Dictionary = { "actor": actor_did, "limit": limit }
 	if not cursor.is_empty():
 		query["cursor"] = cursor
@@ -54,12 +54,12 @@ func get_author_feed(actor_did: String, limit: int = 20, cursor: String = "") ->
 		query,
 		true
 	)
-	return ATProtoAuthorFeedData.ATProtoAuthorFeedResponse.from_raw(raw)
+	return ATProtoAuthorFeedData.Response.from_raw(raw)
 
-func resolve_handle(handle: String) -> ATProtoResolveHandleData.ATProtoResolveHandleResponse:
+func resolve_handle(handle: String) -> ATProtoResolveHandleData.Response:
 	var raw: Dictionary = await _client.xrpc_get(
 		"/xrpc/com.atproto.identity.resolveHandle",
 		{ "handle": handle },
 		false
 	)
-	return ATProtoResolveHandleData.ATProtoResolveHandleResponse.from_raw(raw)
+	return ATProtoResolveHandleData.Response.from_raw(raw)

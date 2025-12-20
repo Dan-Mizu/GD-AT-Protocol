@@ -1,17 +1,17 @@
-extends RefCounted
 class_name ATProtoAuthorFeedData
+extends RefCounted
 
 var feed: Array = []            # array of feed items (Dictionary for now)
 var cursor: String = ""         # pagination cursor (if present)
 var raw: Dictionary = {}        # full JSON
 
-class ATProtoAuthorFeedResponse:
+class Response:
 	extends ATProtoResponse
 
 	var data: ATProtoAuthorFeedData = null
 
-	static func from_raw(raw: Dictionary) -> ATProtoAuthorFeedResponse:
-		var resp := ATProtoAuthorFeedResponse.new()
+	static func from_raw(raw: Dictionary) -> ATProtoAuthorFeedData.Response:
+		var resp := ATProtoAuthorFeedData.Response.new()
 		resp.status = int(raw.get("status", 0))
 		resp.raw_body = String(raw.get("raw", ""))
 

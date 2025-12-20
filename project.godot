@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="GD AT Protocol"
+config/tags=PackedStringArray("addon")
 run/main_scene="uid://dburqv0p518ie"
 config/features=PackedStringArray("4.5")
 config/icon="res://icon.svg"

@@ -37,13 +37,13 @@ func _get_profile() -> void:
 		spinner_container.visible = true
 
 		# get profile data
-		var res: ATProtoProfileData.ATProtoProfileResponse = await ATProto.get_profile(handle_line_edit.text)
+		var profile: ATProtoProfileData.Response = await ATProto.get_profile(handle_line_edit.text)
 
 		# failed
-		if not res.is_ok():
-			push_error("Failed to get profile: %s" % res.error)
+		if not profile.is_ok():
+			push_error("Failed to get profile: %s" % profile.error)
 			ToastParty.show({
-				"text": res.error,           # Text (emojis can be used)
+				"text": profile.error,           # Text (emojis can be used)
 				"bgcolor": Color(1.0, 0.223, 0.223, 0.8),     # Background Color
 				"color": Color(1, 1, 1, 1),         # Text Color
 				"gravity": "top",                   # top or bottom
@@ -56,22 +56,18 @@ func _get_profile() -> void:
 			profile_card_panel_container.visible = false
 			return
 
-		# success
-		var profile_data: ATProtoProfileData = res.data
-		print("Profile data: ", profile_data.raw)
-
 		# set profile text
-		profile_name_label.text = profile_data.display_name
-		profile_description_label.text = profile_data.description
-		profile_follower_count_label.text = format_number_as_string(profile_data.followers_count)
-		profile_following_count_label.text = format_number_as_string(profile_data.follows_count)
+		profile_name_label.text = profile.data.display_name
+		profile_description_label.text = profile.data.description
+		profile_follower_count_label.text = format_number_as_string(profile.data.followers_count)
+		profile_following_count_label.text = format_number_as_string(profile.data.follows_count)
 
 		# set profile images
-		var avatar_url: String = profile_data.avatar_url
+		var avatar_url: String = profile.data.avatar_url
 		if avatar_url.is_empty(): profile_avatar_texture_rect.texture = null
 		else: await _set_texture_from_url(profile_avatar_texture_rect, avatar_url)
 
-		var banner_url: String = profile_data.banner_url
+		var banner_url: String = profile.data.banner_url
 		if banner_url.is_empty(): profile_banner_texture_rect.texture = null
 		else: await _set_texture_from_url(profile_banner_texture_rect, banner_url)
 

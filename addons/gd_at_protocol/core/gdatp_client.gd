@@ -1,5 +1,5 @@
-extends Node
 class_name ATProtoClient
+extends Node
 
 const DEFAULT_BASE_URL: String = "https://api.bsky.app"
 

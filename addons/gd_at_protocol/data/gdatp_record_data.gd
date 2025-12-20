@@ -1,5 +1,5 @@
-extends RefCounted
 class_name ATProtoRecordData
+extends RefCounted
 
 var uri: String = ""
 var cid: String = ""
@@ -9,13 +9,13 @@ var collection: String = ""
 var rkey: String = ""
 var raw: Dictionary = {}
 
-class ATProtoRecordResponse:
+class Response:
 	extends ATProtoResponse
 
 	var data: ATProtoRecordData = null
 
-	static func from_raw(raw: Dictionary) -> ATProtoRecordResponse:
-		var resp := ATProtoRecordResponse.new()
+	static func from_raw(raw: Dictionary) -> ATProtoRecordData.Response:
+		var resp := ATProtoRecordData.Response.new()
 		resp.status = int(raw.get("status", 0))
 		resp.raw_body = String(raw.get("raw", ""))
 

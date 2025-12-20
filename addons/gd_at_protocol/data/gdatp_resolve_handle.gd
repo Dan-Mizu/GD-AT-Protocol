@@ -1,16 +1,16 @@
-extends RefCounted
 class_name ATProtoResolveHandleData
+extends RefCounted
 
 var did: String = ""
 var raw: Dictionary = {}
 
-class ATProtoResolveHandleResponse:
+class Response:
 	extends ATProtoResponse
 
 	var data: ATProtoResolveHandleData = null
 
-	static func from_raw(raw: Dictionary) -> ATProtoResolveHandleResponse:
-		var resp := ATProtoResolveHandleResponse.new()
+	static func from_raw(raw: Dictionary) -> ATProtoResolveHandleData.Response:
+		var resp := ATProtoResolveHandleData.Response.new()
 		resp.status = int(raw.get("status", 0))
 		resp.raw_body = String(raw.get("raw", ""))
 

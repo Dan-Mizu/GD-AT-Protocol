@@ -1,5 +1,5 @@
-extends RefCounted
 class_name ATProtoSessionData
+extends RefCounted
 
 var did: String = ""
 var access_jwt: String = ""
@@ -8,13 +8,13 @@ var handle: String = ""
 var email: String = ""
 var raw: Dictionary = {}
 
-class ATProtoSessionResponse:
+class Response:
 	extends ATProtoResponse
 
 	var data: ATProtoSessionData = null
 
-	static func from_raw(raw: Dictionary) -> ATProtoSessionResponse:
-		var resp := ATProtoSessionResponse.new()
+	static func from_raw(raw: Dictionary) -> ATProtoSessionData.Response:
+		var resp := ATProtoSessionData.Response.new()
 		resp.status = int(raw.get("status", 0))
 		resp.raw_body = String(raw.get("raw", ""))
 
