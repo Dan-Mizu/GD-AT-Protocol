@@ -42,8 +42,38 @@ func create_session(
 	if resp.error == "":
 		var s: ATProtoSessionData = resp.data
 		_client.set_session(s.did, s.access_jwt, s.refresh_jwt)
+		_client.set_pds_url(service_endpoint)
 
 	return resp
+
+func describe_repo(repo: String) -> ATProtoDescribeRepoData.Response:
+	var raw: Dictionary = await _client.xrpc_get(
+		"/xrpc/com.atproto.repo.describeRepo",
+		{ "repo": repo },
+		true
+	)
+	return ATProtoDescribeRepoData.Response.from_raw(raw)
+
+func list_records(
+	repo: String,
+	collection: String,
+	cursor: String = "",
+	limit: int = 100
+) -> ATProtoListRecordsData.Response:
+	var query: Dictionary = {
+		"repo": repo,
+		"collection": collection,
+		"limit": limit,
+	}
+	if not cursor.is_empty():
+		query["cursor"] = cursor
+
+	var raw: Dictionary = await _client.xrpc_get(
+		"/xrpc/com.atproto.repo.listRecords",
+		query,
+		true
+	)
+	return ATProtoListRecordsData.Response.from_raw(raw)
 
 func get_record(repo: String, collection: String, rkey: String) -> ATProtoRecordData.Response:
 	var raw: Dictionary = await _client.xrpc_get(
@@ -81,3 +111,34 @@ func resolve_handle(handle: String) -> ATProtoResolveHandleData.Response:
 		false
 	)
 	return ATProtoResolveHandleData.Response.from_raw(raw)
+
+#region Helpers
+func fetch_all_records_for_collection(
+	repo: String,
+	collection: String
+) -> Array[ATProtoListRecordsData.Record]:
+	var all_records: Array[ATProtoListRecordsData.Record] = []
+	var cursor := ""
+
+	while true:
+		var page_res: ATProtoListRecordsData.Response = await list_records(
+			repo,
+			collection,
+			cursor,
+			100
+		)
+
+		if not page_res.is_ok():
+			push_error("Failed to list records for %s\n%s" % [collection, page_res.error])
+			break
+
+		var page: ATProtoListRecordsData = page_res.data
+		all_records.append_array(page.records)
+
+		if page.cursor.is_empty():
+			break
+
+		cursor = page.cursor
+
+	return all_records
+#endregion

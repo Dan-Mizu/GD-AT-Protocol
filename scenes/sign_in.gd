@@ -124,6 +124,40 @@ func _log_in() -> void:
 	var session: ATProtoSessionData = session_res.data
 	Utility.on_success("Signed In As @%s\nDID: %s" % [session.handle, session.did])
 
+	# get collections
+	var repo_res: ATProtoDescribeRepoData.Response = await ATProto.describe_repo(session.did)
+	if not repo_res.is_ok():
+		Utility.on_error("Failed to describe repo\n%s" % repo_res.error)
+		return
+	var repo: ATProtoDescribeRepoData = repo_res.data
+	if repo.collections.is_empty():
+		print("No collections.")
+		return
+	else:
+		prints("Collections for repo:", repo.collections)
+
+	## list records
+	#for col in repo.collections:
+		#print("\n=== Collection %s ===" % col)
+		#var records: Array[ATProtoListRecordsData.Record] = await ATProto.fetch_all_records_for_collection(
+			#repo.did,
+			#col
+		#)
+		#print("Found %d records" % records.size())
+#
+		#for rec in records:
+			#var rkey := ""
+			#var parts := rec.uri.split("/")
+			#if parts.size() >= 4: rkey = parts[3]
+#
+			#prints(
+				#"rkey:", rkey,
+				#"uri:", rec.uri,
+				#"cid:", rec.cid,
+				#"indexedAt:", rec.indexed_at,
+				#"value:", rec.value
+			#)
+
 func _reset() -> void:
 	# clear inputs
 	handle_line_edit.clear()

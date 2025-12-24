@@ -4,6 +4,8 @@ extends Node
 const DEFAULT_API_URL: String = "https://api.bsky.app"
 
 var api_url: String = DEFAULT_API_URL
+var pds_url: String = ""
+
 var _http: HTTPRequest
 
 var _access_jwt: String = ""
@@ -17,6 +19,9 @@ func _ready() -> void:
 func set_base_url(url: String) -> void:
 	api_url = url.rstrip("/")
 
+func set_pds_url(url: String) -> void:
+	pds_url = url.rstrip("/")
+
 func set_session(did: String, access_jwt: String, refresh_jwt: String) -> void:
 	_did = did
 	_access_jwt = access_jwt
@@ -28,14 +33,38 @@ func is_authenticated() -> bool:
 func get_did() -> String:
 	return _did
 
+func _pick_base_url_for_path(path: String) -> String:
+	# Normalize
+	if not path.begins_with("/"):
+		path = "/" + path
+
+	# For app.bsky.* endpoints, use the appview/base API.
+	if path.begins_with("/xrpc/app.bsky."):
+		return api_url
+
+	# For repo / identity / server endpoints, we usually want the PDS
+	if path.begins_with("/xrpc/com.atproto.repo.") \
+	or path.begins_with("/xrpc/com.atproto.identity.") \
+	or path.begins_with("/xrpc/com.atproto.server."):
+		if not pds_url.is_empty():
+			return pds_url
+
+	# Fallback: use api_url if we don't know better
+	return api_url
+
 func xrpc_get(path: String, query: Dictionary = {}, require_auth: bool = false) -> Dictionary:
+	if not path.begins_with("/"):
+		path = "/" + path
+
 	var qs_parts: PackedStringArray = []
 	for key in query.keys():
 		var k: String = str(key).uri_encode()
 		var v: String = str(query[key]).uri_encode()
 		qs_parts.append("%s=%s" % [k, v])
 
-	var url := "%s%s" % [api_url, path]
+	var base_url := _pick_base_url_for_path(path)
+	var url := "%s%s" % [base_url, path]
+
 	if qs_parts.size() > 0:
 		url += "?" + "&".join(qs_parts)
 
@@ -109,7 +138,11 @@ func xrpc_get(path: String, query: Dictionary = {}, require_auth: bool = false) 
 	}
 
 func xrpc_post(path: String, body_dict: Dictionary, require_auth: bool = false) -> Dictionary:
-	var url := "%s%s" % [api_url, path]
+	if not path.begins_with("/"):
+		path = "/" + path
+
+	var base_url := _pick_base_url_for_path(path)
+	var url := "%s%s" % [base_url, path]
 	var json_text := JSON.stringify(body_dict)
 
 	var headers: PackedStringArray = [ "Content-Type: application/json" ]
@@ -161,7 +194,6 @@ func xrpc_post(path: String, body_dict: Dictionary, require_auth: bool = false) 
 			err_code = String(err_body.get("error", err_code))
 			err_msg  = String(err_body.get("message", ""))
 		else:
-			# Not JSON – keep body in raw for debugging
 			err_msg = "Non-JSON error body"
 
 		return {

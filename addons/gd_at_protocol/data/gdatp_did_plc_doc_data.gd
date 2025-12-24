@@ -9,6 +9,63 @@ var services: Array[Service] = []
 var pds_endpoint: String = ""
 var raw: Dictionary = {}
 
+static func from_dict(d: Dictionary) -> ATProtoDidPlcDocData:
+	var doc := ATProtoDidPlcDocData.new()
+
+	# @context
+	doc.context = []
+	var ctx = d.get("@context", [])
+	if typeof(ctx) == TYPE_ARRAY:
+		for v in ctx:
+			doc.context.append(String(v))
+
+	# id
+	doc.id = String(d.get("id", ""))
+
+	# alsoKnownAs
+	doc.also_known_as = []
+	var aka = d.get("alsoKnownAs", [])
+	if typeof(aka) == TYPE_ARRAY:
+		for v in aka:
+			doc.also_known_as.append(String(v))
+
+	# verificationMethod[]
+	doc.verification_methods = []
+	var vms = d.get("verificationMethod", [])
+	if typeof(vms) == TYPE_ARRAY:
+		for item in vms:
+			if typeof(item) != TYPE_DICTIONARY:
+				continue
+			var vm_dict: Dictionary = item
+			var vm := ATProtoDidPlcDocData.VerificationMethod.new()
+			vm.id        = String(vm_dict.get("id", ""))
+			vm.type      = String(vm_dict.get("type", ""))
+			vm.controller = String(vm_dict.get("controller", ""))
+			vm.public_key_multibase = String(vm_dict.get("publicKeyMultibase", ""))
+			doc.verification_methods.append(vm)
+
+	# service[]
+	doc.services = []
+	doc.pds_endpoint = ""
+	var svc = d.get("service", [])
+	if typeof(svc) == TYPE_ARRAY:
+		for item in svc:
+			if typeof(item) != TYPE_DICTIONARY:
+				continue
+			var s_dict: Dictionary = item
+			var s := ATProtoDidPlcDocData.Service.new()
+			s.id = String(s_dict.get("id", ""))
+			s.type = String(s_dict.get("type", ""))
+			s.service_endpoint = String(s_dict.get("serviceEndpoint", ""))
+
+			doc.services.append(s)
+
+			if s.type == "AtprotoPersonalDataServer" and doc.pds_endpoint.is_empty():
+				doc.pds_endpoint = s.service_endpoint
+
+	doc.raw = d
+	return doc
+
 class Response:
 	extends ATProtoResponse
 
