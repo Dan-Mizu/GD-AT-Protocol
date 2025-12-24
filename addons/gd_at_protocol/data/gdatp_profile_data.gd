@@ -18,7 +18,6 @@ var posts_count: int = 0
 var pinned_post: ATProtoProfileData.PinnedPostData = null
 var raw: Dictionary = {}
 
-
 class Response:
 	extends ATProtoResponse
 
@@ -117,7 +116,6 @@ class Response:
 		resp.data = p
 		return resp
 
-
 class AssociatedData:
 	extends RefCounted
 
@@ -128,14 +126,12 @@ class AssociatedData:
 	var chat: Dictionary[String, String] = {}
 	var activity_subscription: Dictionary[String, String] = {}
 
-
 class VerificationData:
 	extends RefCounted
 
 	var verifications: Array[ATProtoProfileData.VerificationVerificationsData] = []
 	var verified_status: String = ""
 	var trusted_verifier_status: String = ""
-
 
 class VerificationVerificationsData:
 	extends RefCounted
@@ -144,7 +140,6 @@ class VerificationVerificationsData:
 	var uri: String = ""
 	var is_valid: bool = false
 	var created_at: String = ""
-
 
 class PinnedPostData:
 	extends RefCounted

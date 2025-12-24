@@ -12,7 +12,7 @@ config_version=5
 
 config/name="GD AT Protocol"
 config/tags=PackedStringArray("addon")
-run/main_scene="uid://dburqv0p518ie"
+run/main_scene="uid://bh1inbtrdww2j"
 config/features=PackedStringArray("4.5")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 ATProto="*res://addons/gd_at_protocol/atproto.gd"
 ToastParty="*res://addons/toastparty/toast-autoload.gd"
+Utility="*res://components/globals/utility.gd"
 
 [editor_plugins]
 

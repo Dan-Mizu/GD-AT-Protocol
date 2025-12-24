@@ -1,0 +1,576 @@
+[gd_scene load_steps=29 format=3 uid="uid://bh1inbtrdww2j"]
+
+[ext_resource type="Theme" uid="uid://dr4hm86sugbmt" path="res://components/ui/Glassmorphism/Themes/glassmorphism.tres" id="1_s8gyt"]
+[ext_resource type="Script" uid="uid://1jop40fi42ca" path="res://scenes/sign_in.gd" id="2_s8gyt"]
+[ext_resource type="PackedScene" uid="uid://doxsqt5ydwfwm" path="res://components/cloud_background.tscn" id="3_e7bcv"]
+[ext_resource type="PackedScene" uid="uid://cfopwr4txmeg" path="res://components/ui/Glassmorphism/Shaders/Scenes/blur_shader.tscn" id="4_yc633"]
+[ext_resource type="Texture2D" uid="uid://dlbox4iqjln51" path="res://components/ui/Glassmorphism/Icons/Phosphor/caret-right-bold.svg" id="5_caxgg"]
+[ext_resource type="Texture2D" uid="uid://de7qhllyttha" path="res://components/ui/Glassmorphism/Icons/Phosphor/at-bold.svg" id="5_e7bcv"]
+[ext_resource type="Texture2D" uid="uid://c5h8c7r2005te" path="res://components/ui/Glassmorphism/Icons/Phosphor/caret-left-bold.svg" id="5_yc633"]
+[ext_resource type="Script" uid="uid://hre2tqplv7sj" path="res://components/ui/Glassmorphism/Modules/Control/expand_hovered_control_module.gd" id="6_x3fmc"]
+[ext_resource type="Script" uid="uid://d1qmtwovrflgb" path="res://components/ui/Glassmorphism/Modules/Button/shrink_pressed_button_module.gd" id="7_47hle"]
+[ext_resource type="Texture2D" uid="uid://c0e5q0gagpfv0" path="res://components/ui/Glassmorphism/Icons/Phosphor/sign-out-bold.svg" id="8_caxgg"]
+[ext_resource type="Texture2D" uid="uid://ijqlmvmsd1x2" path="res://components/ui/Glassmorphism/Icons/Phosphor/lock-bold.svg" id="9_yc633"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7o7en"]
+blend_mode = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rn6f"]
+bg_color = Color(1, 1, 1, 0.16078432)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 0.57900006)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+anti_aliasing_size = 0.45
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8gyt"]
+bg_color = Color(0.08235294, 0.11372549, 0.15686275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.08235294, 0.11372549, 0.15686275, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wyoe2"]
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7bcv"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.08235294, 0.11372549, 0.15686275, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+anti_aliasing_size = 1.2
+
+[sub_resource type="SystemFont" id="SystemFont_mpuud"]
+font_names = PackedStringArray("Segoe UI")
+
+[sub_resource type="FontVariation" id="FontVariation_yc633"]
+base_font = SubResource("SystemFont_mpuud")
+variation_opentype = {
+2003265652: 999
+}
+variation_embolden = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_caxgg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3fmc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47hle"]
+bg_color = Color(0.044987913, 0.070164785, 0.10303309, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0daw8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7o7en"]
+bg_color = Color(1, 1, 1, 0.498039)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Gradient" id="Gradient_dpt2u"]
+offsets = PackedFloat32Array(0.9, 0.901, 0.999, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mpuud"]
+gradient = SubResource("Gradient_dpt2u")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Animation" id="Animation_yc1k0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:radial_initial_angle")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:radial_fill_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [60.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:value")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [72.0]
+}
+
+[sub_resource type="Animation" id="Animation_p2530"]
+resource_name = "spin"
+length = 2.0
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:radial_initial_angle")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.0001, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 360.0, 0.0, 360.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [30.0, 50.0, 100.0, 30.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fxi54"]
+_data = {
+&"RESET": SubResource("Animation_yc1k0"),
+&"spin": SubResource("Animation_p2530")
+}
+
+[node name="SignIn" type="Control" node_paths=PackedStringArray("handle_line_edit", "password_line_edit", "profile_container", "handle_input_container", "password_input_container", "spinner_container", "profile_avatar_texture_rect", "profile_name_label", "profile_handle_label", "profile_back_button", "profile_sign_out_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_s8gyt")
+script = ExtResource("2_s8gyt")
+handle_line_edit = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Handle/Handle Input")
+password_line_edit = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Password/Password Input")
+profile_container = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile")
+handle_input_container = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Handle")
+password_input_container = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Password")
+spinner_container = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Spinner")
+profile_avatar_texture_rect = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Profile Image Cutout/Profile Avatar Image")
+profile_name_label = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/VBoxContainer/Profile Name")
+profile_handle_label = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/VBoxContainer/Handle")
+profile_back_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Back")
+profile_sign_out_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Sign Out")
+
+[node name="CloudBackground" parent="." instance=ExtResource("3_e7bcv")]
+layout_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+material = SubResource("CanvasItemMaterial_7o7en")
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5rn6f")
+
+[node name="BlurShader" parent="CenterContainer/PanelContainer" instance=ExtResource("4_yc633")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "AT Protocol
+Sign-In Demo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Profile" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s8gyt")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Profile Image Cutout" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_wyoe2")
+
+[node name="Profile Avatar Image" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Profile Image Cutout"]
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Border" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Profile Image Cutout"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e7bcv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -5
+
+[node name="Profile Name" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_fonts/font = SubResource("FontVariation_yc633")
+vertical_alignment = 2
+
+[node name="Handle" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+
+[node name="Back" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_caxgg")
+
+[node name="Back Button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 15)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x3fmc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_47hle")
+theme_override_styles/hover = SubResource("StyleBoxFlat_47hle")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_47hle")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_0daw8")
+
+[node name="ShrinkPressedButton" type="Node" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Back/Back Button" node_paths=PackedStringArray("target_control")]
+script = ExtResource("7_47hle")
+shrink_scale = Vector2(0.9, 0.9)
+return_duration = 0.15
+tween_type = 1
+tween_ease = 2
+target_control = NodePath("../..")
+metadata/_custom_type_script = "uid://d1qmtwovrflgb"
+
+[node name="ExpandHoveredControl" type="Node" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Back/Back Button" node_paths=PackedStringArray("target_control")]
+script = ExtResource("6_x3fmc")
+expand_scale = Vector2(1.1, 1.1)
+expand_duration = 0.1
+return_duration = 0.15
+tween_type = 1
+tween_ease = 2
+target_control = NodePath("../..")
+metadata/_custom_type_script = "uid://hre2tqplv7sj"
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Back Icon" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Back/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_yc633")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Sign Out" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_caxgg")
+
+[node name="Sign Out Button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Sign Out"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 15)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x3fmc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_47hle")
+theme_override_styles/hover = SubResource("StyleBoxFlat_47hle")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_47hle")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_0daw8")
+
+[node name="ShrinkPressedButton" type="Node" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Sign Out/Sign Out Button" node_paths=PackedStringArray("target_control")]
+script = ExtResource("7_47hle")
+shrink_scale = Vector2(0.9, 0.9)
+return_duration = 0.15
+tween_type = 1
+tween_ease = 2
+target_control = NodePath("../..")
+metadata/_custom_type_script = "uid://d1qmtwovrflgb"
+
+[node name="ExpandHoveredControl" type="Node" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Sign Out/Sign Out Button" node_paths=PackedStringArray("target_control")]
+script = ExtResource("6_x3fmc")
+expand_scale = Vector2(1.1, 1.1)
+expand_duration = 0.1
+return_duration = 0.15
+tween_type = 1
+tween_ease = 2
+target_control = NodePath("../..")
+metadata/_custom_type_script = "uid://hre2tqplv7sj"
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Sign Out"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Sign Out Icon" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Sign Out/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("8_caxgg")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Inputs" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Handle" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs"]
+layout_mode = 2
+
+[node name="Hint" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Handle"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("5_e7bcv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Handle Input" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Handle"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Send Handle" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Handle"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_7o7en")
+
+[node name="Send Icon" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Handle/Send Handle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_caxgg")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="Send Button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Handle/Send Handle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 15)
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="ExpandHoveredControl" type="Node" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Handle/Send Handle/Send Button" node_paths=PackedStringArray("target_control")]
+script = ExtResource("6_x3fmc")
+expand_scale = Vector2(1.1, 1.1)
+expand_duration = 0.1
+return_duration = 0.15
+tween_type = 1
+tween_ease = 2
+target_control = NodePath("../..")
+metadata/_custom_type_script = "uid://hre2tqplv7sj"
+
+[node name="ShrinkPressedButton" type="Node" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Handle/Send Handle/Send Button" node_paths=PackedStringArray("target_control")]
+script = ExtResource("7_47hle")
+shrink_scale = Vector2(0.9, 0.9)
+return_duration = 0.15
+tween_type = 1
+tween_ease = 2
+target_control = NodePath("../..")
+metadata/_custom_type_script = "uid://d1qmtwovrflgb"
+
+[node name="Password" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs"]
+layout_mode = 2
+
+[node name="Hint" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Password"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("9_yc633")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Password Input" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Password"]
+layout_mode = 2
+size_flags_horizontal = 3
+virtual_keyboard_type = 6
+secret = true
+
+[node name="Send Handle" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Password"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_7o7en")
+
+[node name="Send Icon" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Password/Send Handle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_caxgg")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="Send Button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Password/Send Handle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 15)
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="ExpandHoveredControl" type="Node" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Password/Send Handle/Send Button" node_paths=PackedStringArray("target_control")]
+script = ExtResource("6_x3fmc")
+expand_scale = Vector2(1.1, 1.1)
+expand_duration = 0.1
+return_duration = 0.15
+tween_type = 1
+tween_ease = 2
+target_control = NodePath("../..")
+metadata/_custom_type_script = "uid://hre2tqplv7sj"
+
+[node name="ShrinkPressedButton" type="Node" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Password/Send Handle/Send Button" node_paths=PackedStringArray("target_control")]
+script = ExtResource("7_47hle")
+shrink_scale = Vector2(0.9, 0.9)
+return_duration = 0.15
+tween_type = 1
+tween_ease = 2
+target_control = NodePath("../..")
+metadata/_custom_type_script = "uid://d1qmtwovrflgb"
+
+[node name="Spinner" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Spinner"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+value = 72.0
+fill_mode = 5
+radial_fill_degrees = 60.0
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_mpuud")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Spinner/TextureProgressBar"]
+libraries = {
+&"": SubResource("AnimationLibrary_fxi54")
+}
+autoplay = "spin"
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Back/Back Button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile/MarginContainer/HBoxContainer/Sign Out/Sign Out Button" to="." method="_on_sign_out_button_pressed"]
+[connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Handle/Handle Input" to="." method="_on_handle_line_edit_text_submitted"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Handle/Send Handle/Send Button" to="." method="_on_handle_send_button_pressed"]
+[connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Password/Password Input" to="." method="_on_password_line_edit_text_submitted"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Inputs/Password/Send Handle/Send Button" to="." method="_on_password_send_button_pressed"]

@@ -99,6 +99,7 @@ variation_embolden = 1.0
 
 [sub_resource type="SystemFont" id="SystemFont_dpt2u"]
 font_names = PackedStringArray("Segoe UI")
+subpixel_positioning = 0
 
 [sub_resource type="FontVariation" id="FontVariation_mpuud"]
 base_font = SubResource("SystemFont_dpt2u")
@@ -424,8 +425,6 @@ autowrap_mode = 3
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_bottom = 100
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Spinner"]
 custom_minimum_size = Vector2(50, 50)

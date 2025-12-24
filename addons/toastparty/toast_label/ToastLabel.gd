@@ -18,10 +18,15 @@ var _tween_in: Tween
 # local variables
 var gravity = "bottom"  # top, bottom
 var direction = "center"  # left, right, center
-var timer_to_destroy = 2  # seconds by default
+var timer_to_destroy = 5  # seconds by default
 
 
 func _ready():
+	var ls = get("label_settings")
+	if ls: set("label_settings", ls.duplicate())
+	var normal_style = get("theme_override_styles/normal")
+	if normal_style: set("theme_override_styles/normal", normal_style.duplicate())
+
 	_set_resolution()
 	button_size = self.size
 
@@ -75,18 +80,18 @@ func update_text(_text: String) -> void:
 func move_to(index: int) -> void:
 	update_x_position()
 
-	var offset_y = (margin_between + button_size.y) * index
+	var h := size.y  # use the label's current height
+	var offset_y = (margin_between + h) * index
 	var _y = get_y_pos(offset_y, gravity)
 
-	# bottom
 	if index == 0:
 		_tween_in = get_tree().create_tween()
-		_tween_in.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS) # pause mode
+		_tween_in.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		_tween_in.stop()
 		var delayed = 0.03
 		(
 			_tween_in
-			. tween_property(self, "position", Vector2(position.x, _y), .3)
+			. tween_property(self, "position", Vector2(position.x, _y), 0.3)
 			. set_trans(Tween.TRANS_QUINT)
 			. set_ease(Tween.EASE_IN)
 			. set_delay(delayed)
@@ -94,11 +99,11 @@ func move_to(index: int) -> void:
 		_tween_in.play()
 	else:
 		_tween_in = get_tree().create_tween()
-		_tween_in.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS) # pause mode
+		_tween_in.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		_tween_in.stop()
 		(
 			_tween_in
-			. tween_property(self, "position", Vector2(position.x, _y), .3)
+			. tween_property(self, "position", Vector2(position.x, _y), 0.3)
 			. set_trans(Tween.TRANS_ELASTIC)
 			. set_ease(Tween.EASE_IN_OUT)
 		)

@@ -1,8 +1,19 @@
 [gd_scene load_steps=5 format=3 uid="uid://5fdwql2fe12p"]
 
-[ext_resource type="StyleBox" uid="uid://dmfsgouwamnrg" path="res://components/ui/Glassmorphism/CommonStyleBoxes/DefaultPanelCornerRadius8/glassmorphism_default_panel_alpha_third_corner_radius_8.tres" id="1_ey6m7"]
 [ext_resource type="FontFile" uid="uid://ckdq0v58m7das" path="res://addons/toastparty/fonts/Light.ttf" id="2_f7wfx"]
 [ext_resource type="Script" uid="uid://ccxa5jspft0de" path="res://addons/toastparty/toast_label/ToastLabel.gd" id="3_sstde"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ht8nw"]
+bg_color = Color(1, 1, 1, 0.333333)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_o6str"]
 resource_local_to_scene = true
@@ -25,7 +36,7 @@ offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = ExtResource("1_ey6m7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ht8nw")
 text = "Toast Party"
 label_settings = SubResource("LabelSettings_o6str")
 horizontal_alignment = 1

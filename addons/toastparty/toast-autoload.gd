@@ -55,32 +55,32 @@ func _add_new_label(config):
 
 func move_positions(direction, gravity):
 	if direction == "left" and gravity == "bottom":
-		for index in label_bottom_left.size():
+		for index in range(label_bottom_left.size()):
 			var _label = label_bottom_left[index]
 			_label.move_to(index)
 	
 	elif direction == "left" and gravity == "top":
-		for index in label_top_left.size():
+		for index in range(label_top_left.size()):
 			var _label = label_top_left[index]
 			_label.move_to(index)
 
 	elif direction == "right" and gravity == "bottom":
-		for index in label_bottom_right.size():
+		for index in range(label_bottom_right.size()):
 			var _label = label_bottom_right[index]
 			_label.move_to(index)
 
 	elif direction == "right" and gravity == "top":
-		for index in label_top_right.size():
+		for index in range(label_top_right.size()):
 			var _label = label_top_right[index]
 			_label.move_to(index)
 
 	elif direction == "center" and gravity == "bottom":
-		for index in label_bottom_center.size():
+		for index in range(label_bottom_center.size()):
 			var _label = label_bottom_center[index]
 			_label.move_to(index)
 	
 	elif direction == "center" and gravity == "top":
-		for index in label_top_center.size():
+		for index in range(label_top_center.size()):
 			var _label = label_top_center[index]
 			_label.move_to(index)
 	
