@@ -1,5 +1,5 @@
 {
-  "client_id": "https://<base-url>/oauth-client-metadata.json",
+  "client_id": "https://dan-mizu.github.io/GD-AT-Protocol/oauth-client-metadata.json",
   "application_type": "native",
   "client_name": "GD AT Protocol",
   "dpop_bound_access_tokens": true,
