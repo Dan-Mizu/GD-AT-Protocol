@@ -1,0 +1,11 @@
+{
+  "client_id": "https://<base-url>/oauth-client-metadata.json",
+  "application_type": "native",
+  "client_name": "GD AT Protocol",
+  "dpop_bound_access_tokens": true,
+  "grant_types": ["authorization_code", "refresh_token"],
+  "redirect_uris": ["http://127.0.0.1:45123/oauth/callback"],
+  "response_types": ["code"],
+  "scope": "atproto",
+  "token_endpoint_auth_method": "none"
+}
