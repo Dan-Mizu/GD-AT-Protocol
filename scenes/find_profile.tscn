@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dburqv0p518ie"]
+[gd_scene format=3 uid="uid://dburqv0p518ie"]
 
 [ext_resource type="PackedScene" uid="uid://doxsqt5ydwfwm" path="res://components/cloud_background.tscn" id="1_0lt4e"]
 [ext_resource type="Theme" uid="uid://dr4hm86sugbmt" path="res://components/ui/Glassmorphism/Themes/glassmorphism.tres" id="1_861bk"]
@@ -196,7 +196,7 @@ _data = {
 &"spin": SubResource("Animation_p2530")
 }
 
-[node name="FindProfile" type="Control" node_paths=PackedStringArray("handle_line_edit", "profile_card_panel_container", "spinner_container", "profile_avatar_texture_rect", "profile_banner_texture_rect", "profile_name_label", "profile_description_label", "profile_follower_count_label", "profile_following_count_label")]
+[node name="FindProfile" type="Control" unique_id=925224634 node_paths=PackedStringArray("handle_line_edit", "profile_card_panel_container", "spinner_container", "profile_avatar_texture_rect", "profile_banner_texture_rect", "profile_name_label", "profile_description_label", "profile_follower_count_label", "profile_following_count_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -215,10 +215,10 @@ profile_description_label = NodePath("CenterContainer/PanelContainer/MarginConta
 profile_follower_count_label = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Followers/Follower Count")
 profile_following_count_label = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Following/Following Count")
 
-[node name="CloudBackground" parent="." instance=ExtResource("1_0lt4e")]
+[node name="CloudBackground" parent="." unique_id=1214648732 instance=ExtResource("1_0lt4e")]
 layout_mode = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=128784267]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -226,27 +226,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=926817584]
 material = SubResource("CanvasItemMaterial_7o7en")
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5rn6f")
 
-[node name="BlurShader" parent="CenterContainer/PanelContainer" instance=ExtResource("3_0dnoy")]
+[node name="BlurShader" parent="CenterContainer/PanelContainer" unique_id=150081748 instance=ExtResource("3_0dnoy")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=702727340]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=199351084]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Title" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1438805296]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
@@ -255,31 +255,31 @@ Profile Demo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Handle Input" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Handle Input" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=190825482]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input" unique_id=1755494314]
 layout_mode = 2
 
-[node name="Hint" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer"]
+[node name="Hint" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer" unique_id=488965563]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = SubResource("FontVariation_861bk")
 text = "@"
 vertical_alignment = 1
 
-[node name="Handle Input" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer"]
+[node name="Handle Input" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer" unique_id=1693842647]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Send" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer"]
+[node name="Send" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer" unique_id=1958110676]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_7o7en")
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer/Send"]
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer/Send" unique_id=960606264]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -290,7 +290,7 @@ texture = ExtResource("4_0dnoy")
 expand_mode = 3
 stretch_mode = 3
 
-[node name="Button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer/Send"]
+[node name="Button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer/Send" unique_id=1808161733]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -300,7 +300,7 @@ grow_vertical = 2
 mouse_default_cursor_shape = 2
 flat = true
 
-[node name="ExpandHoveredControl" type="Node" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer/Send/Button" node_paths=PackedStringArray("target_control")]
+[node name="ExpandHoveredControl" type="Node" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer/Send/Button" unique_id=548251338 node_paths=PackedStringArray("target_control")]
 script = ExtResource("6_dpt2u")
 expand_scale = Vector2(1.1, 1.1)
 expand_duration = 0.1
@@ -310,7 +310,7 @@ tween_ease = 2
 target_control = NodePath("../..")
 metadata/_custom_type_script = "uid://hre2tqplv7sj"
 
-[node name="ShrinkPressedButton" type="Node" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer/Send/Button" node_paths=PackedStringArray("target_control")]
+[node name="ShrinkPressedButton" type="Node" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer/Send/Button" unique_id=741603998 node_paths=PackedStringArray("target_control")]
 script = ExtResource("6_5rn6f")
 shrink_scale = Vector2(0.9, 0.9)
 return_duration = 0.15
@@ -319,40 +319,40 @@ tween_ease = 2
 target_control = NodePath("../..")
 metadata/_custom_type_script = "uid://d1qmtwovrflgb"
 
-[node name="Profile Card" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Profile Card" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=846339780]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mpuud")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card" unique_id=1247527850]
 layout_mode = 2
 theme_override_constants/separation = -35
 
-[node name="Banner Cutout" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer"]
+[node name="Banner Cutout" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer" unique_id=1481420466]
 clip_children = 1
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p2530")
 
-[node name="Profile Banner Image" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Banner Cutout"]
+[node name="Profile Banner Image" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Banner Cutout" unique_id=1162920060]
 layout_mode = 2
 expand_mode = 5
 
-[node name="Content" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer"]
+[node name="Content" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer" unique_id=1509911707]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content" unique_id=1279298789]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer" unique_id=1538155201]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Profile Image Cutout" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer"]
+[node name="Profile Image Cutout" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer" unique_id=1872736840]
 clip_children = 1
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -360,73 +360,73 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_dpt2u")
 
-[node name="Profile Avatar Image" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Profile Image Cutout"]
+[node name="Profile Avatar Image" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Profile Image Cutout" unique_id=1464506468]
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Border" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Profile Image Cutout"]
+[node name="Border" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Profile Image Cutout" unique_id=1197363366]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yc1k0")
 
-[node name="Profile Name" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer"]
+[node name="Profile Name" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer" unique_id=120268668]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_fonts/font = SubResource("FontVariation_p2530")
 vertical_alignment = 2
 
-[node name="Spacer" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer"]
+[node name="Spacer" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer" unique_id=1907883674]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Followers" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer"]
+[node name="Followers" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer" unique_id=2110304606]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Follower Count" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Followers"]
+[node name="Follower Count" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Followers" unique_id=692802975]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = SubResource("FontVariation_mpuud")
 theme_override_font_sizes/font_size = 14
 vertical_alignment = 2
 
-[node name="Followers Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Followers"]
+[node name="Followers Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Followers" unique_id=1906740181]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 14
 text = "followers"
 vertical_alignment = 2
 
-[node name="Following" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer"]
+[node name="Following" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer" unique_id=927486013]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Following Count" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Following"]
+[node name="Following Count" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Following" unique_id=388509875]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = SubResource("FontVariation_mpuud")
 theme_override_font_sizes/font_size = 14
 vertical_alignment = 2
 
-[node name="Following Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Following"]
+[node name="Following Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer/HBoxContainer/Following" unique_id=1747731139]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 14
 text = "following"
 vertical_alignment = 2
 
-[node name="Profile Description" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer"]
+[node name="Profile Description" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Profile Card/VBoxContainer/Content/VBoxContainer" unique_id=492895296]
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 15
 autowrap_mode = 3
 
-[node name="Spinner" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Spinner" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2079772929]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Spinner"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Spinner" unique_id=1725280841]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 value = 72.0
@@ -435,11 +435,9 @@ radial_fill_degrees = 60.0
 nine_patch_stretch = true
 texture_progress = SubResource("GradientTexture2D_mpuud")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Spinner/TextureProgressBar"]
-libraries = {
-&"": SubResource("AnimationLibrary_fxi54")
-}
-autoplay = "spin"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Spinner/TextureProgressBar" unique_id=613362757]
+libraries/ = SubResource("AnimationLibrary_fxi54")
+autoplay = &"spin"
 
 [connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer/Handle Input" to="." method="_on_handle_line_edit_text_submitted"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Handle Input/HBoxContainer/Send/Button" to="." method="_on_send_button_pressed"]
